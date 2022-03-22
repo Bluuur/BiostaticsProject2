@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zidongzh.mappers.ReadMapper">
+
+    <select id="getAllReads" resultType="com.zidongzh.pojo.Read">
+        select * from t_ChIP_Seq
+    </select>
+
+</mapper>
