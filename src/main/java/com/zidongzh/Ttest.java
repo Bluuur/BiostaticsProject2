@@ -5,7 +5,8 @@ import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import JSci.maths.statistics.TDistribution;
 
 /**
- * 实现 T 检验
+ * t test
+ *
  * @author Zidong Zh
  * @date 2022/3/22
  */

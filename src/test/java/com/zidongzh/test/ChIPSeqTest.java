@@ -31,13 +31,16 @@ public class ChIPSeqTest {
 
         ReadMapper readMapper = sqlSession.getMapper(ReadMapper.class);
 
-
+        // 获取所有 reads
         List<Read> allReads = readMapper.getAllReads();
-        System.out.println("size of all reads is " + allReads.size());
+//        System.out.println("size of all reads is " + allReads.size());
+        // 计算测序深度均值
         int mean = (int) round(getMean(allReads));
-        System.out.println("mean of depth is " + mean);
+//        System.out.println("mean of depth is " + mean);
+        // 得到最大值
         List<Read> peak = getPeak(allReads, mean);
-        System.out.println("size of peak is " + peak.size());
+//        System.out.println("size of peak is " + peak.size());
+
     }
 
 
@@ -58,7 +61,6 @@ public class ChIPSeqTest {
                     nowRead.getDepth() > allReads.get(i + 1).getDepth()
             ) {
                 peak.add(nowRead);
-                System.out.print(i+",");
             }
         }
         return peak;
@@ -78,5 +80,33 @@ public class ChIPSeqTest {
         return sum / allReads.size();
     }
 
+    /**
+     * poisson distribution
+     *
+     * @param lambda lambda of poisson distribution
+     * @param x      x of poisson distribution
+     * @return p of poisson distribution
+     */
+    public double poisson(double lambda, int x) {
+        double p = 0.0;
+        p = (exp(-lambda) * pow(lambda, (double) x)) / (factorial((double) x));
+        return p;
+    }
 
+    /**
+     * calculate factorial
+     *
+     * @param number num to calculate factorial
+     * @return result
+     */
+    public double factorial(double number) {
+        if (number <= 1)
+            return 1;
+        else
+            return number * factorial(number - 1);
+    }
+
+    public void expand(Read peak){
+        
+    }
 }
